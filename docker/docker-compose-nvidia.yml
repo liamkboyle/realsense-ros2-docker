@@ -6,4 +6,6 @@ services:
       service: realsense_ros2
     environment:
      - NVIDIA_VISIBLE_DEVICES=all
+     - ROS_DOMAIN_ID=42
     runtime: nvidia
+    network_mode: host

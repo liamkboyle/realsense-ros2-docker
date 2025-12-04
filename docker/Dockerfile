@@ -18,12 +18,15 @@ RUN apt-get update \
 RUN apt-get update \
  && apt-get install -y \
     ros-${ROS_DISTRO}-librealsense2* \
-    ros-${ROS_DISTRO}-realsense2-* \
- && rm -rf /var/lib/apt/lists/*
+    ros-${ROS_DISTRO}-realsense2-*
 
+RUN sudo apt-get install -y ros-${ROS_DISTRO}-rmw-cyclonedds-cpp
 RUN apt-get update \
  && apt-get install -y \
     ros-${ROS_DISTRO}-rviz2 \
  && rm -rf /var/lib/apt/lists/*
 
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
+
+ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ARG DEBIAN_FRONTEND=dialog
